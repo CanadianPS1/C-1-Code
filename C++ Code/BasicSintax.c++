@@ -28,6 +28,8 @@ class basicSintax{
         //basic if statment that compares strings
         if(message.compare("lol") == 0){
             cout<< "\nhehe... nice, i also used lol in testing\n";
+        }else{
+            cout<< "\nWOW... super original their with that word you picked\n";
         }
         //for loop that prings 1-10
         for(int i = 0; i < 10; i++){
@@ -43,7 +45,7 @@ class basicSintax{
     //prints a passed int
     void passedNumber(int number){
         //you cant print an int along with a string, you have to cast it
-        cout<< "\nYour Number was: " + to_string(number) + "\n";
+        cout<< "\nYour Number was: " + to_string(number);
     }
 //you have to put the semi collen at the end of a class decloration
 };
