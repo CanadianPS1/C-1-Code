@@ -28,9 +28,10 @@ class basicSintax{
         //basic if statment that compares strings
         if(message.compare("lol") == 0){
             cout<< "\nhehe... nice, i also used lol in testing\n";
-        //the classic else statment
+        //the classic else if
         }else if(message.compare("haha") == 0){
             cout<< "\nhaha lol haha is right\n";
+        //the classic else statment
         }else{
             cout<< "\nWOW... super original their with that word you picked\n";
         }
