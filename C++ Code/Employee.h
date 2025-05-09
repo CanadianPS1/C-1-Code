@@ -12,5 +12,5 @@ private:
     unsigned int zipcode;
     float wage;
     float hoursWorked;
-    static const float TAX;
+    static const float tax;
 };

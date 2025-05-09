@@ -1,6 +1,6 @@
 #include "Employee.h"
 using namespace std;
-const float Employee::TAX = 0.1f;
+const float Employee::tax = 0.1f;
 //grabs all the info from the user
 void Employee::Read(){
     cout<< "\nEnter First Name: ";
@@ -17,10 +17,10 @@ void Employee::Read(){
 //prints all the info to the user
 void Employee::Write(){
     float weeklyGross = wage * hoursWorked;
-    float weeklyTax = weeklyGross * TAX;
+    float weeklyTax = weeklyGross * tax;
     float weeklyNet = weeklyGross - weeklyTax;
     float yearlyGross = weeklyGross * 52;
-    float yearlyNet = yearlyGross - (yearlyGross * TAX);
+    float yearlyNet = yearlyGross - (yearlyGross * tax);
     cout<< "\n~~Employee Information~~";
     cout<< "\n-------------------------\n";
     cout<< "  \nName: " << name;
@@ -42,7 +42,7 @@ int main(){
     }
     Employee employees[5];
     for(int i = 0; i < numEmployees; i++){
-        cout<< "\nEnter Details for Employee " << (i + 1) << ":\n";
+        cout<< "\nEnter Employee Infomation " << (i + 1) << ":\n";
         employees[i].Read();
     }
     cout<< "\n--- Payroll Summary ---\n";
