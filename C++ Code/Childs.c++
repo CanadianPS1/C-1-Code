@@ -1,4 +1,5 @@
 #include <iostream>
+//#include <windows.h>
 using namespace std;
 class MainChildThings{
     public:
@@ -10,6 +11,8 @@ class Child : public MainChildThings{
     public:
     void printer() override{
         cout<< "I am the one who prints" << endl;
+        //plays a sound
+        //PlaySound(TEXT("test.wav"), NULL, SND_FILENAME);
     }
 };
 int main(){
