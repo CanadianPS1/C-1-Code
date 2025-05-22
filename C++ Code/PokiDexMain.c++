@@ -11,6 +11,15 @@ public:
     void exitMenu();
     void userMenu();
 };
+class Attacking : public PokiDexDitto{
+    public:
+    void gooPunch(string* health, string* eHealth);
+    void gooShot(string* health, string* eHealth);
+    void gooGet(string* health, string* eHealth);
+    void gooForm(string* health);
+    string decreseHealth(string* health);
+    string increseHealth(string* health);
+};
 //decares the methods for the pokemon class
 class PokiDexDitto : public Menu {
 public:
@@ -20,6 +29,66 @@ public:
     void main();
     void fightMenu(string* health);
 };
+void Attacking::gooPunch(string* health, string* eHealth){
+    *eHealth = decreseHealth(eHealth);
+}
+void Attacking::gooShot(string* health, string* eHealth){
+    *eHealth = decreseHealth(eHealth);
+    *eHealth = decreseHealth(eHealth);
+}
+void Attacking::gooGet(string* health, string* eHealth){
+    *eHealth = decreseHealth(eHealth);
+    *health = increseHealth(health);
+}
+void Attacking::gooForm(string* health){
+    *health = increseHealth(health);
+}
+//decreses the hp by 1
+string Attacking::decreseHealth(string* health){
+    if(health->compare("<3  <3  <3  <3  <3  <3 ") == 0){
+        *health = "<3  <3  <3  <3  <3  </3";
+        return *health;
+    }else if(health->compare("<3  <3  <3  <3  <3  </3") == 0){
+        *health = "<3  <3  <3  <3  </3 </3";
+        return *health;
+    }else if(health->compare("<3  <3  <3  <3  </3 </3") == 0){
+        *health = "<3  <3  <3  </3 </3 </3";
+        return *health;
+    }else if(health->compare("<3  <3  <3  </3 </3 </3") == 0){
+        *health = "<3  <3  </3 </3 </3 </3";
+        return *health;
+    }else if(health->compare("<3  <3  </3 </3 </3 </3") == 0){
+        *health = "<3  </3 </3 </3 </3 </3";
+        return *health;
+    }else if(health->compare("<3  </3 </3 </3 </3 </3") == 0){
+        *health = "</3 </3 </3 </3 </3 </3";
+        return *health;
+    }
+    delete health;
+}
+//increses the hp by 1
+string Attacking::increseHealth(string* health){
+    if(health->compare("<3  <3  <3  <3  <3  <3 ") == 0){
+        *health = "<3  <3  <3  <3  <3  <3 ";
+        return *health;
+    }else if(health->compare("<3  <3  <3  <3  <3  </3") == 0){
+        *health = "<3  <3  <3  <3  <3  <3 ";
+        return *health;
+    }else if(health->compare("<3  <3  <3  <3  </3 </3") == 0){
+        *health = "<3  <3  <3  <3  <3  </3";
+        return *health;
+    }else if(health->compare("<3  <3  <3  </3 </3 </3") == 0){
+        *health = "<3  <3  <3  <3  </3 </3";
+        return *health;
+    }else if(health->compare("<3  <3  </3 </3 </3 </3") == 0){
+        *health = "<3  <3  <3  </3 </3 </3";
+        return *health;
+    }else if(health->compare("<3  </3 </3 </3 </3 </3") == 0){
+        *health = "<3  <3  </3 </3 </3 </3";
+        return *health;
+    }
+    delete health;
+}
 //prints out the main menu and implements its functionality
 void Menu::mainMenu(){
     //clears the screen
@@ -231,12 +300,20 @@ void PokiDexDitto::fightMenu(string* health){
             }
             if(userInput->compare("1") == 0){
                 cout<< "\nGATRICK USED!!! GOOO PUNCH!!!";
+                Attacking attack;
+                attack.gooPunch(health,eHealth);
             }else if(userInput->compare("2") == 0){
                 cout<< "\nGATRICK USED!!! GOOO SHOT!!!";
+                Attacking attack;
+                attack.gooShot(health,eHealth);
             }else if(userInput->compare("3") == 0){
                 cout<< "\nGATRICK USED!!! GOOO GET!!!";
+                Attacking attack;
+                attack.gooGet(health,eHealth);
             }else if(userInput->compare("4") == 0){
                 cout<< "\nGATRICK USED!!! GOOO FORM!!";
+                Attacking attack;
+                attack.gooForm(health);
             }else{
                 cout<< "\nYou Entered Wrong INPUT!!!! try a number" << endl;
             }
