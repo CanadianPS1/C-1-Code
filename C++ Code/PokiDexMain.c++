@@ -2,9 +2,10 @@
 #include <thread>
 #include <windows.h>
 #include <mmsystem.h>
+#include <map>
 using namespace std;
-//class PokiDexDitto;
 //declares the methods for the menu class
+map<string,int> players;
 class Menu {
 public:
     void mainMenu();
@@ -188,25 +189,58 @@ void Menu::userMenu(){
     cout<< "\n | |/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////| |";
     cout<< "\n |_|/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////|_|" << endl;
     //grabs user input until its one of the options
-    string* userInput = new string;
     while(true){
+        string* userInput = new string;
         cin>> *userInput;
         //puts the user input into lower case
         for(int i = 0; userInput->length() > i; i++){
             (*userInput)[i] = tolower((*userInput)[i]);
         }
+        //                                                                                         : 87 to end
         if(userInput->compare("list") == 0){
+            system("cls");
+            cout<< "\n _______________________________________________________________________________________________________________________________________________________________________________________";
+            cout<< "\n | |/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////| |";
+            cout<< "\n | |/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////| |";
+            cout<< "\n | |---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------| |";
+            cout<< "\n | |                                                                                                                                                                                 | |";
+            cout<< "\n | |                                                                          ~PLAYERS~                                                                                              | |";
+            for(auto person : players){
+                if(person.second < 10){
+                    cout<< "\n | |                                                       Player Name: " << person.first;
+                    *userInput = " ";
+                    for(int i = 0; i < (108 - person.first.length()); i++){
+                        *userInput = *userInput + " ";
+                    }
+                    *userInput += "| |";
+                    cout<< *userInput;
+                    cout<< "\n | |                                                              Wins: " << person.second << "                                                                                                            | |";
+                    cout<< "\n | |                                                                                                                                                                                 | |";
+                }else{
+                    cout<< "\n | |                                                       Player Name: " << person.first;
+                    cout<< "\n | |                                                              Wins: " << person.second << "                                                                                                           | |";
+                    cout<< "\n | |                                                                                                                                                                                 | |";
+                
+                }
+            }
+            cout<< "\n | |                                                                                                                                                                                 | |";
+            cout<< "\n | |                                                                                                                                                                                 | |";
+            cout<< "\n | |                                                                                                                                                                                 | |";
+            cout<< "\n | |                                                                                                                                                                                 | |";
+            cout<< "\n | |---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------| |";
+            cout<< "\n | |/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////| |";
+            cout<< "\n |_|/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////|_|" << endl;
+            
             delete userInput;
-            cout<< "listing";
-            break;
         }else if(userInput->compare("add") == 0){
+            cout<< "\nEnter Who you would like to Add " <<endl;
+            cin>> *userInput;
+            players.insert({*userInput, 0});
+            cout<< *userInput << " has been added" << endl;
             delete userInput;
-            cout<< "adding";
-            break;
         }else if(userInput->compare("select") == 0){
             delete userInput;
             cout<< "selecting";
-            break;
         }else if(userInput->compare("back") == 0){
             delete userInput;
             //brings you backto the main menu
@@ -306,26 +340,35 @@ void PokiDexDitto::fightMenu(string* health, string* eHealth){
                 cout<< "\nGATRICK USED!!! GOOO PUNCH!!!";
                 Attacking attack;
                 attack.gooPunch(health,eHealth);
+                cout<< "\n~ENTER ANY LETTER~" << endl;
+                cin>> *userInput;
+                system("cls");
             }else if(userInput->compare("2") == 0){
                 cout<< "\nGATRICK USED!!! GOOO SHOT!!!";
                 Attacking attack;
                 attack.gooShot(health,eHealth);
+                cout<< "\n~ENTER ANY LETTER~" << endl;
+                cin>> *userInput;
+                system("cls");
             }else if(userInput->compare("3") == 0){
                 cout<< "\nGATRICK USED!!! GOOO GET!!!";
                 Attacking attack;
                 attack.gooGet(health,eHealth);
+                cout<< "\n~ENTER ANY LETTER~" << endl;
+                cin>> *userInput;
+                system("cls");
             }else if(userInput->compare("4") == 0){
                 cout<< "\nGATRICK USED!!! GOOO FORM!!";
                 Attacking attack;
                 attack.gooForm(health);
+                cout<< "\n~ENTER ANY LETTER~" << endl;
+                cin>> *userInput;
+                system("cls");
             }else if(userInput->compare("exit")){
                 mainMenu();
             }else{
                 cout<< "\nYou Entered Wrong INPUT!!!! try a number" << endl;
             }
-            cout<< "\n~ENTER ANY LETTER~" << endl;
-            cin>> *userInput;
-            system("cls");
             delete userInput;
         }else{
             cout<< "\n _______________________________________________________________________________________________________________________________________________________________________________________";
