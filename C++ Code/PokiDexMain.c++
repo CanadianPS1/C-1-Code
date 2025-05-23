@@ -11,6 +11,15 @@ public:
     void exitMenu();
     void userMenu();
 };
+//decares the methods for the pokemon class
+class PokiDexDitto : public Menu {
+public:
+    void sleep(unsigned int ms);
+    void startAnimation();
+    void barLinePrint(int amountOfLinesAbove, int amountOfLinesBelow);
+    void main();
+    void fightMenu(string* health, string* eHealth);
+};
 class Attacking : public PokiDexDitto{
     public:
     void gooPunch(string* health, string* eHealth);
@@ -19,15 +28,6 @@ class Attacking : public PokiDexDitto{
     void gooForm(string* health);
     string decreseHealth(string* health);
     string increseHealth(string* health);
-};
-//decares the methods for the pokemon class
-class PokiDexDitto : public Menu {
-public:
-    void sleep(unsigned int ms);
-    void startAnimation();
-    void barLinePrint(int amountOfLinesAbove, int amountOfLinesBelow);
-    void main();
-    void fightMenu(string* health);
 };
 void Attacking::gooPunch(string* health, string* eHealth){
     *eHealth = decreseHealth(eHealth);
@@ -260,16 +260,20 @@ void PokiDexDitto::barLinePrint(int amountOfLinesAbove, int amountOfLinesBelow){
     system("cls");
 }
 void PokiDexDitto::main(){
+    string* eHealth = new string;
     string* health = new string;
+    *eHealth = "<3  <3  <3  <3  <3  <3 ";
     *health = "<3  <3  <3  <3  <3  <3 ";
     //PlaySound(TEXT("PokemonBattleStartSound.wav"), NULL, SND_FILENAME | SND_ASYNC);
     //plays the start animation
     startAnimation();
     startAnimation();
     startAnimation();
-    fightMenu(health);
+    fightMenu(health,eHealth);
+    delete health;
+    delete eHealth;
 }
-void PokiDexDitto::fightMenu(string* health){
+void PokiDexDitto::fightMenu(string* health, string* eHealth){
     system("cls");
     while(true){
         if(health->compare("</3 </3 </3 </3 </3 </3") == 1){
@@ -279,7 +283,7 @@ void PokiDexDitto::fightMenu(string* health){
             cout<< "\n | |////////////////////////////////////////////////////||///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////| |";
             cout<< "\n | |----------------------------------------------------||---------------------------------------------------------------------------------------------------------------------------| |";
             cout<< "\n | |                                                    ||                                                                                                                           | |";
-            cout<< "\n | |                        HP                          ||                                                                                                                           | |";
+            cout<< "\n | |                        HP                          ||                                                                                      " <<*eHealth<< "              | |";
             cout<< "\n | |              " <<*health<< "               ||                                                                                                                           | |";
             cout<< "\n | |                                                    ||                                                                                                                           | |";
             cout<< "\n | |        (1) Goo Punch    (2) Goo Shot               ||                                                                                                                           | |";
@@ -314,6 +318,8 @@ void PokiDexDitto::fightMenu(string* health){
                 cout<< "\nGATRICK USED!!! GOOO FORM!!";
                 Attacking attack;
                 attack.gooForm(health);
+            }else if(userInput->compare("exit")){
+                mainMenu();
             }else{
                 cout<< "\nYou Entered Wrong INPUT!!!! try a number" << endl;
             }
