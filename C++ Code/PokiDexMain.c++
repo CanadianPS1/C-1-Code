@@ -6,6 +6,7 @@
 using namespace std;
 //declares the methods for the menu class
 map<string,int> players;
+string currentUser = "_guest_";
 class Menu {
 public:
     void mainMenu();
@@ -196,7 +197,6 @@ void Menu::userMenu(){
         for(int i = 0; userInput->length() > i; i++){
             (*userInput)[i] = tolower((*userInput)[i]);
         }
-        //                                                                                         : 87 to end
         if(userInput->compare("list") == 0){
             system("cls");
             cout<< "\n _______________________________________________________________________________________________________________________________________________________________________________________";
@@ -239,11 +239,18 @@ void Menu::userMenu(){
             cout<< *userInput << " has been added" << endl;
             delete userInput;
         }else if(userInput->compare("select") == 0){
-            delete userInput;
-            cout<< "selecting";
+            cout<< "What user would you like to use?" << endl;
+            cin>> *userInput;
+            for(auto person : players){
+                if(person.first.compare(*userInput) == 0){
+                    currentUser = *userInput;
+                    delete userInput;
+                    cout<< "\nCurrent User: " << currentUser << endl;
+                }
+            }
         }else if(userInput->compare("back") == 0){
             delete userInput;
-            //brings you backto the main menu
+            //brings you back to the main menu
             mainMenu();
             break;
         }
@@ -310,7 +317,54 @@ void PokiDexDitto::main(){
 void PokiDexDitto::fightMenu(string* health, string* eHealth){
     system("cls");
     while(true){
-        if(health->compare("</3 </3 </3 </3 </3 </3") == 1){
+        if(eHealth->compare("</3 </3 </3 </3 </3 </3") == 0){
+            cout<< "\n _______________________________________________________________________________________________________________________________________________________________________________________";
+            cout<< "\n | |/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////| |";
+            cout<< "\n | |/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////| |";
+            cout<< "\n | |---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------| |";
+            for(int i = 0; i< 6; i++){
+                cout<< "\n | |                                                                                                                                                                                 | |";
+            }
+            cout<< "\n | |                                                                                 ~YOU WIN~                                                                                       | |";
+            cout<< "\n | |                                                                                                                                                                                 | |";
+            cout<< "\n | |                                                                                ~PLAY AGAIN~                                                                                     | |";
+            cout<< "\n | |                                                                                                                                                                                 | |";
+            cout<< "\n | |                                                                                ~MAIN MENU~                                                                                      | |";
+            cout<< "\n | |                                                                                                                                                                                 | |";
+            cout<< "\n | |                                                                                  ~QUIT~                                                                                         | |";
+            for(int i = 0; i< 10; i++){
+                cout<< "\n | |                                                                                                                                                                                 | |";
+            }
+            cout<< "\n | |---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------| |";
+            cout<< "\n | |/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////| |";
+            cout<< "\n |_|/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////|_|" << endl;
+            if(currentUser.compare("_guest_") == 1){
+                players[currentUser] = players[currentUser] + 1;
+            }
+            string* userInput = new string;
+            while(true){
+                cin>> *userInput;
+                for(int i = 0; userInput->length() > i; i++){
+                    (*userInput)[i] = tolower((*userInput)[i]);
+                }
+                if(userInput->compare("play") == 0){
+                    delete userInput;
+                    delete health;
+                    main();
+                    break;
+                }else if(userInput->compare("main") == 0){
+                    delete userInput;
+                    delete health;
+                    mainMenu();
+                    break;
+                }else if(userInput->compare("quit") == 0){
+                    delete userInput;
+                    delete health;
+                    exitMenu();
+                    break;
+                }
+            }
+        }else if(health->compare("</3 </3 </3 </3 </3 </3") == 1){
             string* userInput = new string;
             cout<< "\n _______________________________________________________________________________________________________________________________________________________________________________________";
             cout<< "\n | |////////////////////////////////////////////////////||///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////| |";
