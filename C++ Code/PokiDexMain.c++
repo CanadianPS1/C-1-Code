@@ -21,12 +21,16 @@ public:
     void barLinePrint(int amountOfLinesAbove, int amountOfLinesBelow);
     void main();
     void fightMenu(string* health, string* eHealth);
+    virtual void gooPunch(string* health, string* eHealth);
+    virtual void gooShot(string* health, string* eHealth);
+    virtual void gooGet(string* health, string* eHealth);
+    virtual void gooForm(string* health);
 };
 class Attacking : public PokiDexDitto{
     public:
-    void gooPunch(string* health, string* eHealth);
-    void gooShot(string* health, string* eHealth);
-    void gooGet(string* health, string* eHealth);
+    void gooPunch(string* health, string* eHealth) override;
+    void gooShot(string* health, string* eHealth) override;
+    void gooGet(string* health, string* eHealth) override;
     void gooForm(string* health);
     string decreseHealth(string* health);
     string increseHealth(string* health);
@@ -373,16 +377,26 @@ void PokiDexDitto::fightMenu(string* health, string* eHealth){
             cout<< "\n | |                                                    ||                                                                                                                           | |";
             cout<< "\n | |                        HP                          ||                                                                                      " <<*eHealth<< "              | |";
             cout<< "\n | |              " <<*health<< "               ||                                                                                                                           | |";
+            cout<< "\n | |                                                    ||                                                                                   _________                             | |";
+            cout<< "\n | |        (1) Goo Punch    (2) Goo Shot               ||                                                                               ___/         )__                       | |";
+            cout<< "\n | |                                                    ||                                                                              /                )                           | |";
+            cout<< "\n | |        (3) Goo Get      (4) Goo Form               ||                                                                             |                                            | |";
+            cout<< "\n | |                                                    ||                                                                             |                                             | |";
+            cout<< "\n | |                                                    ||                                                                             |                                             | |";
+            cout<< "\n | |                                                    ||                                                                             |                                             | |";
+            cout<< "\n | |                                                    ||                                                                             |                                             | |";
+            cout<< "\n | |                                                    ||                                                                             |                                             | |";
             cout<< "\n | |                                                    ||                                                                                                                           | |";
-            cout<< "\n | |        (1) Goo Punch    (2) Goo Shot               ||                                                                                                                           | |";
+            cout<< "\n | |                                                    ||                         ______                                                                                            | |";
+            cout<< "\n | |                                                    ||                  ______/       )___                                                                                       | |";
+            cout<< "\n | |                                                    ||               __/                  )_                                                                                     | |";
+            cout<< "\n | |                                                    ||              /                 (*)    )                                                                                   | |";
+            cout<< "\n | |                                                    ||            _/                        |                                                                                    | |";
+            cout<< "\n | |                                                    ||           /                         /                                                                                     | |";
+            cout<< "\n | |                                                    ||          |                          |                                                                                     | |";
+            cout<< "\n | |                                                    ||         (                 _________/                                                                                      | |";
+            cout<< "\n | |                                                    ||          <______________/                                                                                                 | |";
             cout<< "\n | |                                                    ||                                                                                                                           | |";
-            cout<< "\n | |        (3) Goo Get      (4) Goo Form               ||                                                                                                                           | |";
-            for(int i = 0; i< 4; i++){
-                cout<< "\n | |                                                    ||                                                                                                                           | |";
-            }
-            for(int i = 0; i< 12; i++){
-                cout<< "\n | |                                                    ||                                                                                                                           | |";
-            }
             cout<< "\n | |----------------------------------------------------||---------------------------------------------------------------------------------------------------------------------------| |";
             cout<< "\n | |////////////////////////////////////////////////////||///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////| |";
             cout<< "\n |_|////////////////////////////////////////////////////||///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////|_|" << endl;  
