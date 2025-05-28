@@ -157,7 +157,6 @@ string Attacking::decreseHealth(string* health){
         *health = "</3 </3 </3 </3 </3 </3";
         return *health;
     }
-    delete health;
 }
 //increses the hp by 1
 string Attacking::increseHealth(string* health){
