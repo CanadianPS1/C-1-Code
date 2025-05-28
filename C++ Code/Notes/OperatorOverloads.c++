@@ -40,14 +40,15 @@ class operators{
         x += oper.x;
         y += oper.y;
     }
+    void operator + (operators& p1){
+        x += p1.x;
+        y += p1.y;
+    }
+    void operator << (ostream& ostream){
+        ostream << x << " : " << y << endl;
+    }
 };
-void operator + (operators& p1, operators& p2){
-    p1.x += p2.x;
-    p1.y += p2.y;
-}
-void operator << (ostream& ostream, operators& p){
-    ostream << p.x << " : " << p.y << endl;
-}
+
 int main(){
     function* fnc = new function;
     fnc->overloading();
@@ -55,8 +56,8 @@ int main(){
     operators op1(10,14);
     operators op2(5,8);
     op2 + op1;
-    cout << op1;
-    cout << op2;
+    op1 << cout;
+    op2 << cout;
     delete fnc;
     return 0;
 }
