@@ -48,7 +48,6 @@ class operators{
         ostream << x << " : " << y << endl;
     }
 };
-
 int main(){
     function* fnc = new function;
     fnc->overloading();
