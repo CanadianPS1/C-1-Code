@@ -4,80 +4,46 @@
 #include <mmsystem.h>
 #include <map>
 #include <random>
+#include "Final.h"
 using namespace std;
 //declares the methods for the menu class
 map<string,int> players;
 string currentUser = "_guest_";
-class Menu {
-public:
-    void mainMenu();
-    void exitMenu();
-    void userMenu();
-};
-//decares the methods for the pokemon class
-class PokiDexDitto : public Menu {
-public:
-    void sleep(unsigned int ms);
-    void startAnimation();
-    void barLinePrint(int amountOfLinesAbove, int amountOfLinesBelow);
-    void main();
-    void fightMenu(string* health, string* eHealth);
-    void updateGraphics(string* health, string* eHealth){
-        system("cls");
-        cout<< "\n _______________________________________________________________________________________________________________________________________________________________________________________";
-        cout<< "\n | |////////////////////////////////////////////////////||///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////| |";
-        cout<< "\n | |////////////////////////////////////////////////////||///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////| |";
-        cout<< "\n | |----------------------------------------------------||---------------------------------------------------------------------------------------------------------------------------| |";
-        cout<< "\n | |                                                    ||                                                                                                                           | |";
-        cout<< "\n | |                        HP                          ||                                                                                      " <<*eHealth<< "              | |";
-        cout<< "\n | |              " <<*health<< "               ||                                                                                                                           | |";
-        cout<< "\n | |                                                    ||                                                                                   _________                               | |";
-        cout<< "\n | |        (1) Goo Punch    (2) Goo Shot               ||                                                                               ___/         )__                            | |";
-        cout<< "\n | |                                                    ||                                                                              /                )                           | |";
-        cout<< "\n | |        (3) Goo Get      (4) Goo Form               ||                                                                             |                  |                          | |";
-        cout<< "\n | |                                                    ||                                                                             |   (O)       (O)   |                         | |";
-        cout<< "\n | |                                                    ||                                                                             |                   |                         | |";
-        cout<< "\n | |                                                    ||                                                                             |                   |                         | |";
-        cout<< "\n | |                                                    ||                                                                             |                   |                         | |";
-        cout<< "\n | |                                                    ||                                                                             |                   |                         | |";
-        cout<< "\n | |                                                    ||                                                                             | @ 3333#//333      |                         | |";
-        cout<< "\n | |                                                    ||                         ______                                              |@@@33##$$$##3@@3@@@|                         | |";
-        cout<< "\n | |                                                    ||                  ______/       )___                                     @@@@@@@@#@@@@#######$$@@83@@                      | |";
-        cout<< "\n | |                                                    ||               __/                  )_                                  @@333333$$$$$#################                     | |";
-        cout<< "\n | |                                                    ||              /                 (*)    )                                 @ @@@@ 3333333$$$$$$$$$#####                      | |";
-        cout<< "\n | |                                                    ||            _/                        |                                        @@@@################                        | |";
-        cout<< "\n | |                                                    ||           /                         /                                                                                     | |";
-        cout<< "\n | |                                                    ||          |                          |                                                                                     | |";
-        cout<< "\n | |                                                    ||         (                 _________/                                                                                      | |";
-        cout<< "\n | |                                                    ||          <______________/                                                                                                 | |";
-        cout<< "\n | |                                                    ||                                                                                                                           | |";
-        cout<< "\n | |----------------------------------------------------||---------------------------------------------------------------------------------------------------------------------------| |";
-        cout<< "\n | |////////////////////////////////////////////////////||///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////| |";
-        cout<< "\n |_|////////////////////////////////////////////////////||///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////|_|" << endl;  
-        
-    }
-    virtual void gooPunch(string* eHealth);
-    virtual void gooShot(string* health, string* eHealth);
-    virtual void gooGet(string* health, string* eHealth);
-    virtual void gooForm(string* health);
-    virtual void aiMove1(string* eHealth);
-    virtual void aiMove2();
-    virtual void aiMove3(string* health);
-    virtual void aiMove4(string* eHealth);
-};
-class Attacking : public PokiDexDitto{
-    public:
-    void gooPunch(string* eHealth) override;
-    void gooShot(string* health, string* eHealth) override;
-    void gooGet(string* health, string* eHealth) override;
-    void gooForm(string* health) override;
-    void aiMove1(string* eHealth) override;
-    void aiMove2() override;
-    void aiMove3(string* health) override;
-    void aiMove4(string* eHealth) override;
-    string decreseHealth(string* health);
-    string increseHealth(string* health);
-};
+//decares the methods for the final class
+void finalDitto::updateGraphics(string* health, string* eHealth){
+    system("cls");
+    cout<< "\n _______________________________________________________________________________________________________________________________________________________________________________________";
+    cout<< "\n | |////////////////////////////////////////////////////||///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////| |";
+    cout<< "\n | |////////////////////////////////////////////////////||///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////| |";
+    cout<< "\n | |----------------------------------------------------||---------------------------------------------------------------------------------------------------------------------------| |";
+    cout<< "\n | |                                                    ||                                                                                                                           | |";
+    cout<< "\n | |                        HP                          ||                                                                                      " <<*eHealth<< "              | |";
+    cout<< "\n | |              " <<*health<< "               ||                                                                                                                           | |";
+    cout<< "\n | |                                                    ||                                                                                   _________                               | |";
+    cout<< "\n | |        (1) Goo Punch    (2) Goo Shot               ||                                                                               ___/         )__                            | |";
+    cout<< "\n | |                                                    ||                                                                              /                )                           | |";
+    cout<< "\n | |        (3) Goo Get      (4) Goo Form               ||                                                                             |                  |                          | |";
+    cout<< "\n | |                                                    ||                                                                             |   (O)       (O)   |                         | |";
+    cout<< "\n | |                                                    ||                                                                             |                   |                         | |";
+    cout<< "\n | |                                                    ||                                                                             |                   |                         | |";
+    cout<< "\n | |                                                    ||                                                                             |                   |                         | |";
+    cout<< "\n | |                                                    ||                                                                             |                   |                         | |";
+    cout<< "\n | |                                                    ||                                                                             | @ 3333#//333      |                         | |";
+    cout<< "\n | |                                                    ||                         ______                                              |@@@33##$$$##3@@3@@@|                         | |";
+    cout<< "\n | |                                                    ||                  ______/       )___                                     @@@@@@@@#@@@@#######$$@@83@@                      | |";
+    cout<< "\n | |                                                    ||               __/                  )_                                  @@333333$$$$$#################                     | |";
+    cout<< "\n | |                                                    ||              /                 (*)    )                                 @ @@@@ 3333333$$$$$$$$$#####                      | |";
+    cout<< "\n | |                                                    ||            _/                        |                                        @@@@################                        | |";
+    cout<< "\n | |                                                    ||           /                         /                                                                                     | |";
+    cout<< "\n | |                                                    ||          |                          |                                                                                     | |";
+    cout<< "\n | |                                                    ||         (                 _________/                                                                                      | |";
+    cout<< "\n | |                                                    ||          <______________/                                                                                                 | |";
+    cout<< "\n | |                                                    ||                                                                                                                           | |";
+    cout<< "\n | |----------------------------------------------------||---------------------------------------------------------------------------------------------------------------------------| |";
+    cout<< "\n | |////////////////////////////////////////////////////||///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////| |";
+    cout<< "\n |_|////////////////////////////////////////////////////||///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////|_|" << endl;  
+    
+}
 void Attacking::aiMove1(string* eHealth){
     //40% chance
     *eHealth = decreseHealth(eHealth);
@@ -95,30 +61,29 @@ void Attacking::aiMove4(string* eHealth){
     //25% chance
     *eHealth = decreseHealth(eHealth);
     *eHealth = decreseHealth(eHealth);
-    
 }
-void PokiDexDitto::aiMove1(string* eHealth){
+void finalDitto::aiMove1(string* eHealth){
     cout<< "Gorbo MISSED!!!";
 }
-void PokiDexDitto::aiMove2(){
+void finalDitto::aiMove2(){
     cout<< "Gorbo MISSED!!!";
 }
-void PokiDexDitto::aiMove3(string* health){
+void finalDitto::aiMove3(string* health){
     cout<< "Gorbo MISSED!!!";
 }
-void PokiDexDitto::aiMove4(string* eHealth){
+void finalDitto::aiMove4(string* eHealth){
     cout<< "Gorbo MISSED!!!";
 }
-void PokiDexDitto::gooPunch(string* eHealth){
+void finalDitto::gooPunch(string* eHealth){
     cout<< "\nMove Missed" << endl;
 }
-void PokiDexDitto::gooShot(string* health, string* eHealth){
+void finalDitto::gooShot(string* health, string* eHealth){
     cout<< "\nMove Missed" << endl;
 }
-void PokiDexDitto::gooGet(string* health, string* eHealth){
+void finalDitto::gooGet(string* health, string* eHealth){
     cout<< "\nMove Missed" << endl;
 }
-void PokiDexDitto::gooForm(string* health){
+void finalDitto::gooForm(string* health){
     cout<< "\nMove Missed" << endl;
 }
 void Attacking::gooPunch(string* eHealth){
@@ -215,7 +180,7 @@ void Menu::mainMenu(){
         if(userInput->compare("play") == 0){
             delete userInput;
             //starts the game
-            PokiDexDitto mode;
+            finalDitto mode;
             mode.main();
             break;
         }else if(userInput->compare("user") == 0){
@@ -347,11 +312,11 @@ void Menu::userMenu(){
     }
 }
 //the method just makes it so i dont have to type all this out every time
-void PokiDexDitto::sleep(unsigned int ms){
+void finalDitto::sleep(unsigned int ms){
     this_thread::sleep_for(chrono::milliseconds(ms));
 }
 //prints out the intro fight animation
-void PokiDexDitto::startAnimation(){
+void finalDitto::startAnimation(){
     //prints the middle bars
     barLinePrint(0,22);
     barLinePrint(2,20);
@@ -367,7 +332,7 @@ void PokiDexDitto::startAnimation(){
     barLinePrint(22,0);
 }
 //prints the bars with an varuble amount of bars on top of them
-void PokiDexDitto::barLinePrint(int amountOfLinesAbove, int amountOfLinesBelow){
+void finalDitto::barLinePrint(int amountOfLinesAbove, int amountOfLinesBelow){
     cout<< "\n _______________________________________________________________________________________________________________________________________________________________________________________";
     cout<< "\n | |////////////////////////////////////////////////////||///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////| |";
     cout<< "\n | |////////////////////////////////////////////////////||///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////| |";
@@ -390,12 +355,12 @@ void PokiDexDitto::barLinePrint(int amountOfLinesAbove, int amountOfLinesBelow){
     sleep(10);
     system("cls");
 }
-void PokiDexDitto::main(){
+void finalDitto::main(){
     string* eHealth = new string;
     string* health = new string;
     *eHealth = "<3  <3  <3  <3  <3  <3 ";
     *health = "<3  <3  <3  <3  <3  <3 ";
-    //PlaySound(TEXT("PokemonBattleStartSound.wav"), NULL, SND_FILENAME | SND_ASYNC);
+    //PlaySound(TEXT("finalBattleStartSound.wav"), NULL, SND_FILENAME | SND_ASYNC);
     //plays the start animation
     startAnimation();
     startAnimation();
@@ -404,7 +369,7 @@ void PokiDexDitto::main(){
     delete health;
     delete eHealth;
 }
-void PokiDexDitto::fightMenu(string* health, string* eHealth){
+void finalDitto::fightMenu(string* health, string* eHealth){
     updateGraphics(health, eHealth);
     while(true){
         if(eHealth->compare("</3 </3 </3 </3 </3 </3") == 0){
