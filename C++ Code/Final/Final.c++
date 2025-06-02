@@ -319,7 +319,6 @@ void Menu::userMenu(){
             for(auto& person : players){
                 if(person.first.compare(*userInput) == 0){
                     currentUser = *userInput;
-
                     // Optional: write updated current user if needed
                     std::ofstream outfile("users.txt");
                     for (const auto& person : players) {
@@ -332,8 +331,6 @@ void Menu::userMenu(){
                 }
             }
             delete userInput;
-        }
-
         }else if(userInput->compare("back") == 0){
             delete userInput;
             //brings you back to the main menu
