@@ -2,6 +2,7 @@
 #define _CRT  DBG_MAP_ALLOC
 #include <stdlib.h>
 #include <crtdbg.h>
+#include <memory>
 using namespace std;
 template<typename T>
 class smart_ptr{
@@ -32,6 +33,7 @@ int main(){
     {
         smart_ptr<int> sp(new int{5});
         //smart_ptr<int> spc(sp);
+        unique_ptr<int> uo(new int{10});
     }
     _CrtDumpMemoryLeaks();
     return 0;
