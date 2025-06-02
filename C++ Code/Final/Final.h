@@ -30,6 +30,7 @@ public:
 };
 class Attacking : public finalDitto{
     public:
+    string operator - (string* health, int times);
     void gooPunch(string* eHealth) override;
     void gooShot(string* health, string* eHealth) override;
     void gooGet(string* health, string* eHealth) override;

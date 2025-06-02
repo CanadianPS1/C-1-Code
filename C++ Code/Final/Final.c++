@@ -45,9 +45,32 @@ void finalDitto::updateGraphics(string* health, string* eHealth){
     cout<< "\n |_|////////////////////////////////////////////////////||///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////|_|" << endl;  
     
 }
+string operator - (string* health, int times){
+    for(int i = 0; i < times; i++){
+        if(health->compare("<3  <3  <3  <3  <3  <3 ") == 0){
+            *health = "<3  <3  <3  <3  <3  </3";
+            return *health;
+        }else if(health->compare("<3  <3  <3  <3  <3  </3") == 0){
+            *health = "<3  <3  <3  <3  </3 </3";
+            return *health;
+        }else if(health->compare("<3  <3  <3  <3  </3 </3") == 0){
+            *health = "<3  <3  <3  </3 </3 </3";
+            return *health;
+        }else if(health->compare("<3  <3  <3  </3 </3 </3") == 0){
+            *health = "<3  <3  </3 </3 </3 </3";
+            return *health;
+        }else if(health->compare("<3  <3  </3 </3 </3 </3") == 0){
+            *health = "<3  </3 </3 </3 </3 </3";
+            return *health;
+        }else if(health->compare("<3  </3 </3 </3 </3 </3") == 0){
+            *health = "</3 </3 </3 </3 </3 </3";
+            return *health;
+        }
+    }
+}
 void Attacking::aiMove1(string* eHealth){
     //40% chance
-    *eHealth = decreseHealth(eHealth);
+    *eHealth = *eHealth - 1;
 }
 void Attacking::aiMove2(){
     //10% chance
@@ -60,8 +83,7 @@ void Attacking::aiMove3(string* health){
 }
 void Attacking::aiMove4(string* eHealth){
     //25% chance
-    *eHealth = decreseHealth(eHealth);
-    *eHealth = decreseHealth(eHealth);
+    *eHealth = eHealth - 2;
 }
 void finalDitto::aiMove1(string* eHealth){
     cout<< "Gorbo MISSED!!!";
@@ -91,12 +113,12 @@ void Attacking::gooPunch(string* eHealth){
     *eHealth = decreseHealth(eHealth);
 }
 void Attacking::gooShot(string* health, string* eHealth){
-    *eHealth = decreseHealth(eHealth);
-    *eHealth = decreseHealth(eHealth);
+    *eHealth = *eHealth - 2;
+    *health = *health - 1;
     *health = decreseHealth(health);
 }
 void Attacking::gooGet(string* health, string* eHealth){
-    *eHealth = decreseHealth(eHealth);
+    *eHealth = *eHealth - 1;
     *health = increseHealth(health);
 }
 void Attacking::gooForm(string* health){
@@ -104,25 +126,7 @@ void Attacking::gooForm(string* health){
 }
 //decreses the hp by 1
 string Attacking::decreseHealth(string* health){
-    if(health->compare("<3  <3  <3  <3  <3  <3 ") == 0){
-        *health = "<3  <3  <3  <3  <3  </3";
-        return *health;
-    }else if(health->compare("<3  <3  <3  <3  <3  </3") == 0){
-        *health = "<3  <3  <3  <3  </3 </3";
-        return *health;
-    }else if(health->compare("<3  <3  <3  <3  </3 </3") == 0){
-        *health = "<3  <3  <3  </3 </3 </3";
-        return *health;
-    }else if(health->compare("<3  <3  <3  </3 </3 </3") == 0){
-        *health = "<3  <3  </3 </3 </3 </3";
-        return *health;
-    }else if(health->compare("<3  <3  </3 </3 </3 </3") == 0){
-        *health = "<3  </3 </3 </3 </3 </3";
-        return *health;
-    }else if(health->compare("<3  </3 </3 </3 </3 </3") == 0){
-        *health = "</3 </3 </3 </3 </3 </3";
-        return *health;
-    }
+    
 }
 //increses the hp by 1
 string Attacking::increseHealth(string* health){
