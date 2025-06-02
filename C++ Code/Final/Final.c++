@@ -5,6 +5,7 @@
 #include <map>
 #include <random>
 #include "Final.h"
+#include <fstream>
 using namespace std;
 //declares the methods for the menu class
 map<string,int> players;
@@ -253,6 +254,16 @@ void Menu::userMenu(){
             (*userInput)[i] = tolower((*userInput)[i]);
         }
         if(userInput->compare("list") == 0){
+            // Read users from file
+            players.clear();
+            std::ifstream infile("users.txt");
+            std::string name;
+            int wins;
+            while (infile >> name >> wins) {
+                players[name] = wins;
+            }
+            infile.close();
+
             system("cls");
             cout<< "\n _______________________________________________________________________________________________________________________________________________________________________________________";
             cout<< "\n | |/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////| |";
@@ -265,7 +276,7 @@ void Menu::userMenu(){
                     cout<< "\n | |                                                       Player Name: " << person.first;
                     *userInput = " ";
                     for(int i = 0; i < (108 - person.first.length()); i++){
-                        *userInput = *userInput + " ";
+                        *userInput += " ";
                     }
                     *userInput += "| |";
                     cout<< *userInput;
@@ -275,7 +286,6 @@ void Menu::userMenu(){
                     cout<< "\n | |                                                       Player Name: " << person.first;
                     cout<< "\n | |                                                              Wins: " << person.second << "                                                                                                           | |";
                     cout<< "\n | |                                                                                                                                                                                 | |";
-                
                 }
             }
             cout<< "\n | |                                                                                                                                                                                 | |";
@@ -285,24 +295,45 @@ void Menu::userMenu(){
             cout<< "\n | |---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------| |";
             cout<< "\n | |/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////| |";
             cout<< "\n |_|/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////|_|" << endl;
-            cin>> *userInput;
+            cin >> *userInput;
             delete userInput;
+
         }else if(userInput->compare("add") == 0){
             cout<< "\nEnter Who you would like to Add " <<endl;
-            cin>> *userInput;
-            players.insert({*userInput, 0});
+            cin >> *userInput;
+            players[*userInput] = 0;
+
+            // Write users to file
+            std::ofstream outfile("users.txt");
+            for (const auto& person : players) {
+                outfile << person.first << " " << person.second << '\n';
+            }
+            outfile.close();
+
             cout<< *userInput << " has been added" << endl;
             delete userInput;
+
         }else if(userInput->compare("select") == 0){
             cout<< "What user would you like to use?" << endl;
-            cin>> *userInput;
-            for(auto person : players){
+            cin >> *userInput;
+            for(auto& person : players){
                 if(person.first.compare(*userInput) == 0){
                     currentUser = *userInput;
-                    delete userInput;
+
+                    // Optional: write updated current user if needed
+                    std::ofstream outfile("users.txt");
+                    for (const auto& person : players) {
+                        outfile << person.first << " " << person.second << '\n';
+                    }
+                    outfile.close();
+
                     cout<< "\nCurrent User: " << currentUser << endl;
+                    break;
                 }
             }
+            delete userInput;
+        }
+
         }else if(userInput->compare("back") == 0){
             delete userInput;
             //brings you back to the main menu
