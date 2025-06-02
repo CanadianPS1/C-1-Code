@@ -9,15 +9,11 @@ public:
     smart_ptr(T* ptr = nullptr) : _ptr{ ptr }{}
     smart_ptr(const smart_ptr&) = delete;
     smart_ptr& operator = (const smart_ptr&) = delete;
-
     ~smart_ptr(){ if (_ptr) delete _ptr; }
-
     T& operator * (){ return *_ptr; }
     T* operator & (){ return  _ptr; }
     T* operator -> (){ return  _ptr; }
-
     T* get(){ return _ptr; }
-
 private:
     T* _ptr{};
 };
@@ -33,6 +29,10 @@ int main(){
     int* ptHeap = new int{5};
     cout<< *ptHeap << endl;
     delete ptHeap;
+    {
+        smart_ptr<int> sp(new int{5});
+        //smart_ptr<int> spc(sp);
+    }
     _CrtDumpMemoryLeaks();
     return 0;
 }
