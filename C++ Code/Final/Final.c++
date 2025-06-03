@@ -46,32 +46,38 @@ void finalDitto::updateGraphics(string* health, string* eHealth){
     cout<< "\n |_|////////////////////////////////////////////////////||///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////|_|" << endl;  
     
 }
-string operator - (string* health, int times){
-    for(int i = 0; i < times; i++){
-        if(health->compare("<3  <3  <3  <3  <3  <3 ") == 0){
-            *health = "<3  <3  <3  <3  <3  </3";
-            return *health;
-        }else if(health->compare("<3  <3  <3  <3  <3  </3") == 0){
-            *health = "<3  <3  <3  <3  </3 </3";
-            return *health;
-        }else if(health->compare("<3  <3  <3  <3  </3 </3") == 0){
-            *health = "<3  <3  <3  </3 </3 </3";
-            return *health;
-        }else if(health->compare("<3  <3  <3  </3 </3 </3") == 0){
-            *health = "<3  <3  </3 </3 </3 </3";
-            return *health;
-        }else if(health->compare("<3  <3  </3 </3 </3 </3") == 0){
-            *health = "<3  </3 </3 </3 </3 </3";
-            return *health;
-        }else if(health->compare("<3  </3 </3 </3 </3 </3") == 0){
-            *health = "</3 </3 </3 </3 </3 </3";
-            return *health;
+string Redusing::operator-(int time){
+    for(int i = 0; i < time; i++){
+        if(health.compare("<3  <3  <3  <3  <3  <3 ") == 0){
+            health = "<3  <3  <3  <3  <3  </3";
+            return health;
+        }else if(health.compare("<3  <3  <3  <3  <3  </3") == 0){
+            health = "<3  <3  <3  <3  </3 </3";
+            return health;
+        }else if(health.compare("<3  <3  <3  <3  </3 </3") == 0){
+            health = "<3  <3  <3  </3 </3 </3";
+            return health;
+        }else if(health.compare("<3  <3  <3  </3 </3 </3") == 0){
+            health = "<3  <3  </3 </3 </3 </3";
+            return health;
+        }else if(health.compare("<3  <3  </3 </3 </3 </3") == 0){
+            health = "<3  </3 </3 </3 </3 </3";
+            return health;
+        }else if(health.compare("<3  </3 </3 </3 </3 </3") == 0){
+            health = "</3 </3 </3 </3 </3 </3";
+            return health;
         }
     }
+    return health;
+}
+string Redusing::reduceHealth(string hp, int t){
+    health = hp;
+    return *this - t;
 }
 void Attacking::aiMove1(string* eHealth){
     //40% chance
-    *eHealth = *eHealth - 1;
+    Redusing red;
+    *eHealth = red.reduceHealth(*eHealth,1);
 }
 void Attacking::aiMove2(){
     //10% chance
@@ -84,7 +90,8 @@ void Attacking::aiMove3(string* health){
 }
 void Attacking::aiMove4(string* eHealth){
     //25% chance
-    *eHealth = eHealth - 2;
+    Redusing red;
+    *eHealth = red.reduceHealth(*eHealth,2);
 }
 void finalDitto::aiMove1(string* eHealth){
     cout<< "Gorbo MISSED!!!";
@@ -111,23 +118,21 @@ void finalDitto::gooForm(string* health){
     cout<< "\nMove Missed" << endl;
 }
 void Attacking::gooPunch(string* eHealth){
-    *eHealth = decreseHealth(eHealth);
+    Redusing red;
+    *eHealth = red.reduceHealth(*eHealth,1);
 }
 void Attacking::gooShot(string* health, string* eHealth){
-    *eHealth = *eHealth - 2;
-    *health = *health - 1;
-    *health = decreseHealth(health);
+    Redusing red;
+    *eHealth = red.reduceHealth(*eHealth,3);
+    *health = red.reduceHealth(*health,1);
 }
 void Attacking::gooGet(string* health, string* eHealth){
-    *eHealth = *eHealth - 1;
+    Redusing red;
+    *eHealth = red.reduceHealth(*eHealth,1);
     *health = increseHealth(health);
 }
 void Attacking::gooForm(string* health){
     *health = increseHealth(health);
-}
-//decreses the hp by 1
-string Attacking::decreseHealth(string* health){
-    
 }
 //increses the hp by 1
 string Attacking::increseHealth(string* health){

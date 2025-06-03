@@ -28,9 +28,15 @@ public:
     virtual void aiMove3(string* health);
     virtual void aiMove4(string* eHealth);
 };
+class Redusing{
+    private:
+    string health;
+    public:
+    string reduceHealth(string hp, int time);
+    string operator-(int time);
+};
 class Attacking : public finalDitto{
     public:
-    string operator - (string* health, int times);
     void gooPunch(string* eHealth) override;
     void gooShot(string* health, string* eHealth) override;
     void gooGet(string* health, string* eHealth) override;
@@ -39,6 +45,5 @@ class Attacking : public finalDitto{
     void aiMove2() override;
     void aiMove3(string* health) override;
     void aiMove4(string* eHealth) override;
-    string decreseHealth(string* health);
     string increseHealth(string* health);
 };

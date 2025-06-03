@@ -1,2 +1,1 @@
-gatrick 0
-lia 0
+Lia 0
