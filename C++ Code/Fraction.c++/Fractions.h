@@ -1,22 +1,25 @@
 #include <iostream>
 using namespace std;
-class fractinsMain{
+
+namespace mathlib {
+    template<typename T>
+    class fractinsMain {
     public:
-    int numerator, denominator;
-    public:
-    fractinsMain();
-    fractinsMain(int n, int d);
-    void Main();
-    const fractinsMain* operator + (fractinsMain frac2);
-    const fractinsMain* operator - (fractinsMain frac2);
-    const fractinsMain* operator * (fractinsMain frac2);
-    const fractinsMain* operator / (fractinsMain frac2);
-    const bool operator == (fractinsMain frac2);
-    const bool operator <= (fractinsMain frac2);
-    const bool operator >= (fractinsMain frac2);
-    const bool operator != (fractinsMain frac2);
-    const bool operator > (fractinsMain frac2);
-    const bool operator < (fractinsMain frac2);
-    const double toDouble();
-    const fractinsMain simplefy();
-};
+        T numerator, denominator;
+        fractinsMain();
+        fractinsMain(T n, T d);
+        void Main(fractinsMain<T> frac);
+        const fractinsMain<T>* operator+(fractinsMain<T> frac2);
+        const fractinsMain<T>* operator-(fractinsMain<T> frac2);
+        const fractinsMain<T>* operator*(fractinsMain<T> frac2);
+        const fractinsMain<T>* operator/(fractinsMain<T> frac2);
+        const bool operator==(fractinsMain<T> frac2);
+        const bool operator<=(fractinsMain<T> frac2);
+        const bool operator>=(fractinsMain<T> frac2);
+        const bool operator!=(fractinsMain<T> frac2);
+        const bool operator>(fractinsMain<T> frac2);
+        const bool operator<(fractinsMain<T> frac2);
+        const double toDouble();
+        const fractinsMain<T> simplefy();
+    };
+}
