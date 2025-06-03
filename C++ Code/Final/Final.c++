@@ -6,6 +6,7 @@
 #include <random>
 #include "Final.h"
 #include <fstream>
+#include <memory>
 using namespace std;
 //declares the methods for the menu class
 map<string,int> players;
@@ -175,7 +176,7 @@ void Menu::mainMenu(){
     cout<< "\n | |/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////| |";
     cout<< "\n |_|/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////|_|" << endl;  
     //grabs user input and makes sure its one of the options
-    string* userInput = new string;
+    unique_ptr<string> userInput(new string);
     while(true){
         cin>> *userInput;
         //puts the user input into lowercase
@@ -183,18 +184,15 @@ void Menu::mainMenu(){
             (*userInput)[i] = tolower((*userInput)[i]);
         }
         if(userInput->compare("play") == 0){
-            delete userInput;
             //starts the game
             finalDitto mode;
             mode.main();
             break;
         }else if(userInput->compare("user") == 0){
-            delete userInput;
             //calls the user menu method
             userMenu();
             break;
         }else if(userInput->compare("exit") == 0){
-            delete userInput;
             //quite the program
             exitMenu();
             break;
@@ -251,7 +249,7 @@ void Menu::userMenu(){
         cout<< "\n | |/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////| |";
         cout<< "\n |_|/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////|_|" << endl;
         //grabs user input until its one of the options
-        string* userInput = new string;
+        unique_ptr<string> userInput(new string);
         cin>> *userInput;
         //puts the user input into lower case
         for(int i = 0; userInput->length() > i; i++){
@@ -300,7 +298,7 @@ void Menu::userMenu(){
             cout<< "\n | |/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////| |";
             cout<< "\n |_|/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////|_|" << endl;
             cin >> *userInput;
-            delete userInput;
+            
 
         }else if(userInput->compare("add") == 0){
             cout<< "\nEnter Who you would like to Add " <<endl;
@@ -315,7 +313,7 @@ void Menu::userMenu(){
             outfile.close();
 
             cout<< *userInput << " has been added" << endl;
-            delete userInput;
+            
 
         }else if(userInput->compare("select") == 0){
             cout<< "What user would you like to use?" << endl;
@@ -334,9 +332,9 @@ void Menu::userMenu(){
                     break;
                 }
             }
-            delete userInput;
+            
         }else if(userInput->compare("back") == 0){
-            delete userInput;
+            
             //brings you back to the main menu
             mainMenu();
             break;
@@ -429,31 +427,31 @@ void finalDitto::fightMenu(string* health, string* eHealth){
             if(currentUser.compare("_guest_") != 0){
                 players[currentUser] = players[currentUser] + 1;
             }
-            string* userInput = new string;
+            unique_ptr<string> userInput(new string);
             while(true){
                 cin>> *userInput;
                 for(int i = 0; userInput->length() > i; i++){
                     (*userInput)[i] = tolower((*userInput)[i]);
                 }
                 if(userInput->compare("play") == 0){
-                    delete userInput;
+                    
                     delete health;
                     main();
                     break;
                 }else if(userInput->compare("main") == 0){
-                    delete userInput;
+                    
                     delete health;
                     mainMenu();
                     break;
                 }else if(userInput->compare("quit") == 0){
-                    delete userInput;
+                    
                     delete health;
                     exitMenu();
                     break;
                 }
             }
         }else if(health->compare("</3 </3 </3 </3 </3 </3") == 1){
-            string* userInput = new string;
+            unique_ptr<string> userInput(new string);
             cin>> *userInput;
             for(int i = 0; userInput->length() > i; i++){
                 (*userInput)[i] = tolower((*userInput)[i]);
@@ -502,7 +500,7 @@ void finalDitto::fightMenu(string* health, string* eHealth){
                 updateGraphics(health, eHealth);
                 cout<< "\nGORBO USED!!! KILL!!!" << endl;
             }
-            delete userInput;
+            
         }else{
             system("cls");
             cout<< "\n _______________________________________________________________________________________________________________________________________________________________________________________";
@@ -525,24 +523,24 @@ void finalDitto::fightMenu(string* health, string* eHealth){
             cout<< "\n | |---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------| |";
             cout<< "\n | |/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////| |";
             cout<< "\n |_|/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////|_|" << endl;
-            string* userInput = new string;
+            unique_ptr<string> userInput(new string);
             while(true){
                 cin>> *userInput;
                 for(int i = 0; userInput->length() > i; i++){
                     (*userInput)[i] = tolower((*userInput)[i]);
                 }
                 if(userInput->compare("play") == 0){
-                    delete userInput;
+                    
                     delete health;
                     main();
                     break;
                 }else if(userInput->compare("main") == 0){
-                    delete userInput;
+                    
                     delete health;
                     mainMenu();
                     break;
                 }else if(userInput->compare("quit") == 0){
-                    delete userInput;
+                    
                     delete health;
                     exitMenu();
                     break;
