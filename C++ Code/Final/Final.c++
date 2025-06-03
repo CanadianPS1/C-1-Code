@@ -7,6 +7,9 @@
 #include "Final.h"
 #include <fstream>
 #include <memory>
+#define _CRT  DBG_MAP_ALLOC
+#include <stdlib.h>
+#include <crtdbg.h>
 using namespace std;
 //declares the methods for the menu class
 map<string,int> players;
@@ -85,8 +88,8 @@ void Attacking::aiMove2(){
 }
 void Attacking::aiMove3(string* health){
     //25% chance
-    *health = increseHealth(health);
-    *health = increseHealth(health);
+    Redusing red;
+    *health = red.increseHealth(*health,2);
 }
 void Attacking::aiMove4(string* eHealth){
     //25% chance
@@ -129,33 +132,39 @@ void Attacking::gooShot(string* health, string* eHealth){
 void Attacking::gooGet(string* health, string* eHealth){
     Redusing red;
     *eHealth = red.reduceHealth(*eHealth,1);
-    *health = increseHealth(health);
+    *health = red.increseHealth(*health,1);
 }
 void Attacking::gooForm(string* health){
-    *health = increseHealth(health);
+    Redusing red;
+    *health = red.increseHealth(*health,1);
 }
 //increses the hp by 1
-string Attacking::increseHealth(string* health){
-    if(health->compare("<3  <3  <3  <3  <3  <3 ") == 0){
-        *health = "<3  <3  <3  <3  <3  <3 ";
-        return *health;
-    }else if(health->compare("<3  <3  <3  <3  <3  </3") == 0){
-        *health = "<3  <3  <3  <3  <3  <3 ";
-        return *health;
-    }else if(health->compare("<3  <3  <3  <3  </3 </3") == 0){
-        *health = "<3  <3  <3  <3  <3  </3";
-        return *health;
-    }else if(health->compare("<3  <3  <3  </3 </3 </3") == 0){
-        *health = "<3  <3  <3  <3  </3 </3";
-        return *health;
-    }else if(health->compare("<3  <3  </3 </3 </3 </3") == 0){
-        *health = "<3  <3  <3  </3 </3 </3";
-        return *health;
-    }else if(health->compare("<3  </3 </3 </3 </3 </3") == 0){
-        *health = "<3  <3  </3 </3 </3 </3";
-        return *health;
+string Redusing::operator+(int time){
+    for(int i = 0; i < time; i++){
+        if(health.compare("<3  <3  <3  <3  <3  <3 ") == 0){
+            health = "<3  <3  <3  <3  <3  <3 ";
+            return health;
+        }else if(health.compare("<3  <3  <3  <3  <3  </3") == 0){
+            health = "<3  <3  <3  <3  <3  <3 ";
+            return health;
+        }else if(health.compare("<3  <3  <3  <3  </3 </3") == 0){
+            health = "<3  <3  <3  <3  <3  </3";
+            return health;
+        }else if(health.compare("<3  <3  <3  </3 </3 </3") == 0){
+            health = "<3  <3  <3  <3  </3 </3";
+            return health;
+        }else if(health.compare("<3  <3  </3 </3 </3 </3") == 0){
+            health = "<3  <3  <3  </3 </3 </3";
+            return health;
+        }else if(health.compare("<3  </3 </3 </3 </3 </3") == 0){
+            health = "<3  <3  </3 </3 </3 </3";
+            return health;
+        }
     }
-    delete health;
+}
+string Redusing::increseHealth(string hp, int time){
+    health = hp;
+    return *this + time;
 }
 //prints out the main menu and implements its functionality
 void Menu::mainMenu(){
@@ -557,5 +566,6 @@ void finalDitto::fightMenu(string* health, string* eHealth){
 int main(){
     Menu player;
     player.mainMenu();
+    _CrtDumpMemoryLeaks();
     return 0;
 }

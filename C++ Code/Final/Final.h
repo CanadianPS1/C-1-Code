@@ -33,6 +33,8 @@ class Redusing{
     string health;
     public:
     string reduceHealth(string hp, int time);
+    string increseHealth(string hp, int time);
+    string operator+(int time);
     string operator-(int time);
 };
 class Attacking : public finalDitto{
@@ -45,5 +47,4 @@ class Attacking : public finalDitto{
     void aiMove2() override;
     void aiMove3(string* health) override;
     void aiMove4(string* eHealth) override;
-    string increseHealth(string* health);
 };
